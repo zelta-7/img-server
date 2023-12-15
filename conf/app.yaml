@@ -1,0 +1,11 @@
+img-server:
+  enabled: true 
+  port: "8080"
+  url: "127.0.0.1"
+  img-repo: "../images"
+  database: 
+    driver: "postgres"
+    name: "img-db"
+    port: "5432"
+    username: "root"
+    password: "secret"
