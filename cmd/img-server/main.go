@@ -35,5 +35,6 @@ func run(cfg *config.Config) {
 		log.Fatalf("Server is not enabled")
 	}
 	cfg.InitImgServer()
-	log.Printf("Server listning on port: %s", cfg.Port)
+	log.Printf("Server listening on port: %s", cfg.Port)
+
 }
