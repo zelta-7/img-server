@@ -17,9 +17,11 @@ func NewImgRepo(db *gorm.DB) Repo {
 
 func (r *imgRepo) GetImg(url string) (string, error) {
 	var images ImageResponse
+
 	if err := r.db.Where("url = ?", url).Find(&images).Error; err != nil {
 		return "", err
 	}
+
 	return images.CompressedPath, nil
 }
 

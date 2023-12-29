@@ -22,7 +22,14 @@ type Database struct {
 }
 
 func Default() *Config {
-	return &Config{}
+	return &Config{
+		Enabled:        true,
+		Port:           "8080",
+		Url:            "127.0.0.1",
+		ImgRepo:        "../images",
+		DB:             Database{},
+		ConfigFilePath: "",
+	}
 }
 
 func (cfg *Config) SetConfigFilePath() *Config {

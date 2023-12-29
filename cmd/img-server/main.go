@@ -30,11 +30,11 @@ func main() {
 
 func run(cfg *config.Config) {
 	cfg.SetConfigFilePath().LoadConfigFile()
+	cfg.InitImgServer()
 
 	if !cfg.Enabled {
 		log.Fatalf("Server is not enabled")
 	}
-	cfg.InitImgServer()
 	log.Printf("Server listening on port: %s", cfg.Port)
 
 }

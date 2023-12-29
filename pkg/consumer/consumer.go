@@ -9,6 +9,7 @@ import (
 
 func Consume(queueName string) ([]string, error) {
 	var compressedData [][]byte
+
 	q, ch, err := util.Connect(producer.QueueName)
 	if err != nil {
 		return nil, err
@@ -23,6 +24,7 @@ func Consume(queueName string) ([]string, error) {
 		false,
 		nil,
 	)
+
 	if err != nil {
 		return nil, err
 	}
@@ -36,6 +38,7 @@ func Consume(queueName string) ([]string, error) {
 		}
 		compressedData = append(compressedData, compressedImg)
 	}
+
 	compressedPath, err := util.StoreCommpressedImage(compressedData, "compressedImg") // Folder exist outside the consumer folder
 
 	return compressedPath, nil

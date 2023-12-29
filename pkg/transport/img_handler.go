@@ -25,7 +25,15 @@ func NewImgHandler(imgService service.ImgService) *ImgHandler {
 }
 
 func (h *ImgHandler) GetImg(c *gin.Context) {
+	url := c.Param("imageName")
 
+	compressedPath, err := h.imgService.GetImg(url)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "image not found"})
+		return
+	}
+
+	c.File(compressedPath)
 }
 
 func (h *ImgHandler) PostImg(c *gin.Context) {
@@ -46,6 +54,7 @@ func (h *ImgHandler) PostImg(c *gin.Context) {
 	if err != nil {
 		fmt.Println("Error consuming image: ", err)
 	}
+
 	newId := uint(uuid.New().ID())
 	for _, path := range compressedPath {
 		record := repository.ImageRecord{
@@ -59,5 +68,6 @@ func (h *ImgHandler) PostImg(c *gin.Context) {
 			return
 		}
 	}
+
 	c.JSON(200, gin.H{"status": "Image queued for processing"})
 }

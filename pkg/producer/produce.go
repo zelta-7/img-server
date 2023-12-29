@@ -9,6 +9,7 @@ var QueueName string = "imageQueue"
 
 func QueueImage(url string) error {
 	imageData, err := util.Download(url)
+
 	if err != nil {
 		return err
 	}
@@ -29,8 +30,10 @@ func QueueImage(url string) error {
 			//MessageId:   file.Name(),
 		},
 	)
+
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
