@@ -32,8 +32,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	dbConnectionString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", cfg.DB.Name, cfg.DB.Port, cfg.DB.Username, cfg.DB.Password, cfg.DB.Name)
-	fmt.Println(dbConnectionString)
+	dbConnectionString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", cfg.DB.Host, cfg.DB.Port, cfg.DB.Username, cfg.DB.Password, cfg.DB.Name)
+	// fmt.Println(dbConnectionString)
 	db, err := gorm.Open("postgres", dbConnectionString)
 	if err != nil {
 		panic(err)
@@ -53,7 +53,7 @@ func main() {
 		panic(err)
 	}
 
-	r.Run(":8080")
+	r.Run(":8081")
 }
 
 func run(cfg *config.Config) {
